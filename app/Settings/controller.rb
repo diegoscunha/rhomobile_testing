@@ -6,11 +6,15 @@ require 'helpers/browser_helper'
 class SettingsController < Rho::RhoController
   include BrowserHelper
   
+#  def index
+#    @msg = @params['msg']
+#    render
+#  end
+
   def index
     @msg = @params['msg']
-    render
+    render :action => :index
   end
-
     
   def login
     @msg = @params['msg']
@@ -37,19 +41,8 @@ class SettingsController < Rho::RhoController
   end
 
   def do_login
-    if @params['login'] and @params['password']
-      begin
-        Rho::RhoConnectClient.login(@params['login'], @params['password'], (url_for :action => :login_callback) )
-        @response['headers']['Wait-Page'] = 'true'
-        render :action => :wait
-      rescue Rho::RhoError => e
-        @msg = e.message
-        render :action => :login
-      end
-    else
-      @msg = Rho::RhoError.err_message(Rho::RhoError::ERR_UNATHORIZED) unless @msg && @msg.length > 0
-      render :action => :login
-    end
+    @msg =  @params['login']
+    render :action => :index
   end
   
   def logout

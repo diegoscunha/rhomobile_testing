@@ -11,22 +11,13 @@
       <% end %>
 
                   
-      <li>
-        <div class="itemLabel">
-          <span class="title">Client ID:</span>
-        </div>
-        <div class="itemValue">
-          <span class="clientID"><%= Rhom::Rhom::client_id %></span>
-        </div>
-      </li>
 
-      <li><a href="<%= url_for :action => :reset %>">Reset Database</a></li>
-      <li><a href="<%= url_for :action => :do_sync %>">Perform Sync</a></li>
-      <% if Rho::RhoConnectClient.isLoggedIn %>
-          <li><a href="<%= url_for :action => :logout %>">Logout</a></li>
-      <% else %>
-          <li><a href="<%= url_for :action => :login %>">Login</a></li>
-      <% end %>
+<div data-role="fieldcontain">
+  <input type="text" id="login" name="login" class="itemValue" <%= placeholder("Login") %> />
+</div>
+<input type="submit" value="Login"/>
+</form>
+</div>
            
     </ul>
   </div>
